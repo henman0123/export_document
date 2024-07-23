@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TCKK 標籤生成工具</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+</head>
+<body>
+    <h1>TCKK 標籤生成工具</h1>
+    <textarea id="text" rows="10" cols="75" placeholder="在此輸入電路資訊，每行一條，格式為：電路名稱,電路代碼,電路位置1,電路位置2。"></textarea><br>
+    <button onclick="generatePDF()">匯出 PDF</button>
+
+    <script>
+        function generatePDF() {
+            const text = document.getElementById('text').value;
+            const lines = text.split('\n').map(line => line.split(','));
+
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            doc.setFont("times");
+            doc.setFontSize(12);
+
+            let y = 7.5;
+            lines.forEach(line => {
+                if (line.length === 4) {
+                    const baseX = 15.55;
+                    doc.text(`${line[0]}`, baseX, y);  // 電路名稱 (左端)
+                    doc.text(`${line[1]}`, baseX, y + 5);  // 電路代碼 (左端)
+                    doc.text(`${line[2]}`, baseX + 61, y); // 電路位置1 (左端)
+                    doc.text(`${line[3]}`, baseX + 61, y + 5); // 電路位置2 (左端)
+                    doc.text(`${line[0]}`, baseX + 95, y);  // 電路名稱 (右端)
+                    doc.text(`${line[1]}`, baseX + 95, y + 5);  // 電路代碼 (右端)
+                    doc.text(`${line[2]}`, baseX + 95 + 61, y); // 電路位置1 (右端)
+                    doc.text(`${line[3]}`, baseX + 95 + 61, y + 5); // 電路位置2 (右端)
+                    y += 12; //段落間距
+                }
+            });
+            doc.save('document.pdf');
+        }
+    </script>
+</body>
+</html>
