@@ -15,7 +15,7 @@
     <script>
         function exportPDF() {
             const text = document.getElementById('text').value; //獲取文本區域的輸入內容
-            const lines = text.split('\n').map(line => line.split('.')); //將輸入內容按行分割，並將每行按逗號分割成多個子元素
+            const lines = text.split('\n').map(line => line.split('.')); //將輸入內容按行分割，並將每行按.分割成多個子元素
 
             const { jsPDF } = window.jspdf; //從 jsPDF 庫中獲取 jsPDF 類
             const label = new jsPDF(); //新建一個 jsPDF 實例
