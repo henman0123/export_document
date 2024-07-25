@@ -1,44 +1,20 @@
-<!labelTYPE html>
+<!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TCKK 標籤生成工具</title>
+    <link rel="stylesheet" href="style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <script src="script.js"></script>
 </head>
 <body>
+<div class="container">
     <h1>TCKK 標籤生成工具</h1>
-    <textarea id="text" rows="10" cols="75" placeholder="在此輸入電路資訊，每行一條，格式為：電路名稱.專線代碼.電路位置1.電路位置2。"></textarea><br>
+    <label>在此輸入電路資訊，每行一條。格式為：電路名稱.專線代碼.電路位置1.電路位置2。</label>
+    <textarea id="text" rows="10" cols="75" placeholder="TCWH-TCKK-GE-2.43GD00101.Y17-6-53:54.Y14-8-29:30&#10;TCWH-TCKK-GE-3.43GD00129.Y17-6-55:56.Y11-11-93:94"></textarea><br>
     <button onclick="exportPDF()">匯出 PDF</button>
-
-    <script>
-        function exportPDF() {
-            const text = document.getElementById('text').value; //獲取文本區域的輸入內容
-            const lines = text.split('\n').map(line => line.split('.')); //將輸入內容按行分割，並將每行按.分割成多個子元素
-
-            const { jsPDF } = window.jspdf; //從 jsPDF 庫中獲取 jsPDF 類
-            const label = new jsPDF(); //新建一個 jsPDF 實例
-            label.setFont("times"); //設定字型為 Times New Roman
-            label.setFontSize(12);
-
-            let y = 7.5; //初始化 y 座標
-            lines.forEach(line => {
-                if (line.length === 4) {
-                    const baseX = 15.55;
-                    label.text(`${line[0]}`, baseX, y);  // 電路名稱 (左端)
-                    label.text(`${line[1]}`, baseX, y + 5);  // 專線代碼 (左端)
-                    label.text(`${line[2]}`, baseX + 61, y); // 電路位置1 (左端)
-                    label.text(`${line[3]}`, baseX + 61, y + 5); // 電路位置2 (左端)
-                    label.text(`${line[0]}`, baseX + 95, y);  // 電路名稱 (右端)
-                    label.text(`${line[1]}`, baseX + 95, y + 5);  // 專線代碼 (右端)
-                    label.text(`${line[2]}`, baseX + 95 + 61, y); // 電路位置1 (右端)
-                    label.text(`${line[3]}`, baseX + 95 + 61, y + 5); // 電路位置2 (右端)
-                    y += 12; //段落間距
-                }
-            });
-            label.save('label.pdf');
-        }
-    </script>
+</div>
 </body>
 </html>
