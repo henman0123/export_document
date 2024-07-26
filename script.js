@@ -7,7 +7,7 @@ function exportPDF() {
     label.setFont("times"); //設定字型為 Times New Roman
     label.setFontSize(12);
 
-    let y = 7.5; //初始化 y 座標
+    let y = 5.5; //初始化 y 座標
     lines.forEach(line => {
         if (line.length === 4) {
             const baseX = 15.55;
