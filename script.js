@@ -7,18 +7,18 @@ function exportPDF() {
     label.setFont("times"); //設定字型為 Times New Roman
     label.setFontSize(12);
 
-    let y = 5; //初始化 y 座標
+    let y = 0; //初始化 y 座標
     lines.forEach(line => {
         if (line.length === 4) {
             const baseX = 15.55;
-            label.text(`${line[0]}`, baseX, y);  // 電路名稱 (左端)
-            label.text(`${line[1]}`, baseX, y + 5);  // 專線代碼 (左端)
-            label.text(`${line[2]}`, baseX + 61, y); // 電路位置1 (左端)
-            label.text(`${line[3]}`, baseX + 61, y + 5); // 電路位置2 (左端)
-            label.text(`${line[0]}`, baseX + 95, y);  // 電路名稱 (右端)
-            label.text(`${line[1]}`, baseX + 95, y + 5);  // 專線代碼 (右端)
-            label.text(`${line[2]}`, baseX + 95 + 61, y); // 電路位置1 (右端)
-            label.text(`${line[3]}`, baseX + 95 + 61, y + 5); // 電路位置2 (右端)
+            label.text(`${line[0]}`, baseX, y,{lineHeightFactor: 1});  // 電路名稱 (左端)
+            label.text(`${line[1]}`, baseX, y + 5,{lineHeightFactor: 1});  // 專線代碼 (左端)
+            label.text(`${line[2]}`, baseX + 61, y,{lineHeightFactor: 1}); // 電路位置1 (左端)
+            label.text(`${line[3]}`, baseX + 61, y + 5,{lineHeightFactor: 1}); // 電路位置2 (左端)
+            label.text(`${line[0]}`, baseX + 95, y,{lineHeightFactor: 1});  // 電路名稱 (右端)
+            label.text(`${line[1]}`, baseX + 95, y + 5,{lineHeightFactor: 1});  // 專線代碼 (右端)
+            label.text(`${line[2]}`, baseX + 95 + 61, y,{lineHeightFactor: 1}); // 電路位置1 (右端)
+            label.text(`${line[3]}`, baseX + 95 + 61, y + 5,{lineHeightFactor: 1.5}); // 電路位置2 (右端)
             y += 12.3; //段落間距
         }
     });
