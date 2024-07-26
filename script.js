@@ -9,6 +9,7 @@ function exportPDF() {
 
     let y = 10; //初始化 y 座標（東昇協助實測數值）
     lines.forEach(line => {
+        if (line.length === 4) {
             const baseX = 15.55;
             label.text(`${line[0]}`, baseX, y);  // 電路名稱 (左端)
             label.text(`${line[1]}`, baseX, y + 5);  // 專線代碼 (左端)
@@ -19,6 +20,7 @@ function exportPDF() {
             label.text(`${line[2]}`, baseX + 95 + 61, y); // 電路位置1 (右端)
             label.text(`${line[3]}`, baseX + 95 + 61, y + 5); // 電路位置2 (右端)
             y += 11.95; //段落間距（東昇協助實測數值）
+        }
     });
     label.save('label.pdf');
 }
