@@ -19,7 +19,7 @@ function exportPDF() {
             label.text(`${line[1]}`, baseX + 95, y + 5);  // 專線代碼 (右端)
             label.text(`${line[2]}`, baseX + 95 + 61, y); // 電路位置1 (右端)
             label.text(`${line[3]}`, baseX + 95 + 61, y + 5); // 電路位置2 (右端)
-            y += 11; //段落間距
+            y += 5; //段落間距
         }
     });
     label.save('label.pdf');
