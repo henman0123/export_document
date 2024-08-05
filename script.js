@@ -11,7 +11,7 @@ function exportPDF() {
     let lineCount = 0; // 初始化行計數器
     lines.forEach(line => {
         if (line.length === 4) {
-            if (lineCount === 24) {
+            if (lineCount === 24) { //如果行計數器等於 24 則執行下方程式碼。
                 label.addPage(); // 新建一頁
                 y = 10; // 重設 y 座標
                 lineCount = 0; // 重設行計數器
@@ -22,10 +22,10 @@ function exportPDF() {
             label.text(`${line[1]}`, baseX, y + 5);  // 專線代碼 (左端)
             label.text(`${line[2]}`, baseX + 61, y); // 電路位置1 (左端)
             label.text(`${line[3]}`, baseX + 61, y + 5); // 電路位置2 (左端)
-            label.text(`${line[0]}`, baseX + 95, y);  // 電路名稱 (右端)
-            label.text(`${line[1]}`, baseX + 95, y + 5);  // 專線代碼 (右端)
-            label.text(`${line[2]}`, baseX + 95 + 61, y); // 電路位置1 (右端)
-            label.text(`${line[3]}`, baseX + 95 + 61, y + 5); // 電路位置2 (右端)
+            label.text(`${line[0]}`, baseX + 93, y);  // 電路名稱 (右端)
+            label.text(`${line[1]}`, baseX + 93, y + 5);  // 專線代碼 (右端)
+            label.text(`${line[2]}`, baseX + 93 + 61, y); // 電路位置1 (右端)
+            label.text(`${line[3]}`, baseX + 93 + 61, y + 5); // 電路位置2 (右端)
             y += 11.95; // 段落間距（東昇協助實測數值）
             lineCount++; // 增加行計數器
         }
