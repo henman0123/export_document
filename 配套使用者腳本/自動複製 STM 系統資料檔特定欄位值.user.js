@@ -8,8 +8,8 @@
 // @match       http://127.0.0.1:3000/e:/User_Temp/*
 // @icon        https://web-eshop.cdn.hinet.net/eshop/img/favicon.ico
 // @grant       none
-// @updateURL   https://yourdomain.com/path/to/your-script.user.js
-// @downloadURL https://yourdomain.com/path/to/your-script.user.js
+// @updateURL   https://github.com/henman0123/export_document/raw/gh-pages/%E9%85%8D%E5%A5%97%E4%BD%BF%E7%94%A8%E8%80%85%E8%85%B3%E6%9C%AC/%E8%87%AA%E5%8B%95%E8%A4%87%E8%A3%BD%20STM%20%E7%B3%BB%E7%B5%B1%E8%B3%87%E6%96%99%E6%AA%94%E7%89%B9%E5%AE%9A%E6%AC%84%E4%BD%8D%E5%80%BC.user.js
+// @downloadURL https://github.com/henman0123/export_document/raw/gh-pages/%E9%85%8D%E5%A5%97%E4%BD%BF%E7%94%A8%E8%80%85%E8%85%B3%E6%9C%AC/%E8%87%AA%E5%8B%95%E8%A4%87%E8%A3%BD%20STM%20%E7%B3%BB%E7%B5%B1%E8%B3%87%E6%96%99%E6%AA%94%E7%89%B9%E5%AE%9A%E6%AC%84%E4%BD%8D%E5%80%BC.user.js
 // ==/UserScript==
 
 (function() {
@@ -89,7 +89,7 @@
     // 格式化並自動複製到剪貼簿
     const formattedValue = `${Value1}.${Value2}.${Value3}.`;
     navigator.clipboard.writeText(formattedValue).then(() => {
-        alert(`已自動複製: \n${formattedValue}`);
+        //alert(`已自動複製: \n${formattedValue}`); //debug用
     }).catch(err => {
         console.error('複製時發生錯誤: ', err);
     });
