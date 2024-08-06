@@ -5,7 +5,6 @@
 // @description 自動複製 STM 系統資料檔特定欄位值，須配合 TCKK 標籤工具使用。
 // @author      noi
 // @match       https://web.pams.cht.com.tw/sys/stm/sdh_QryStmSys.asp?*
-// @match       http://127.0.0.1:3000/e:/User_Temp/*
 // @icon        https://web-eshop.cdn.hinet.net/eshop/img/favicon.ico
 // @grant       none
 // @updateURL   https://github.com/henman0123/export_document/raw/gh-pages/%E9%85%8D%E5%A5%97%E4%BD%BF%E7%94%A8%E8%80%85%E8%85%B3%E6%9C%AC/%E8%87%AA%E5%8B%95%E8%A4%87%E8%A3%BD%20STM%20%E7%B3%BB%E7%B5%B1%E8%B3%87%E6%96%99%E6%AA%94%E7%89%B9%E5%AE%9A%E6%AC%84%E4%BD%8D%E5%80%BC.user.js
@@ -62,7 +61,6 @@
             return; // 結束執行
     }
 
-    // 使用目前的程式碼（當 table 標籤總共有六個時）
     // 查找第 2 個 table 標籤的第 2 個 tr 標籤的第 1 個 td 標籤的值
     const table1 = tables[1];
     if (table1) {
