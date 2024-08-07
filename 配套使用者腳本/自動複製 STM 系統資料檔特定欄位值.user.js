@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        自動複製 STM 系統資料檔特定欄位值
 // @namespace   http://tampermonkey.net/
-// @version     1.4
+// @version     1.5
 // @description 自動複製 STM 系統資料檔特定欄位值，須配合 TCKK 標籤工具使用。
 // @author      noi
 // @match       https://web.pams.cht.com.tw/sys/stm/sdh_QryStmSys.asp?*
@@ -23,7 +23,7 @@
 
     switch (tableCount) {
         case 6:
-            // 查找第 6 個 table 標籤的第 6 個 tr 標籤的第 2 個 td 標籤的值
+            // 尋找第 6 個 table 標籤的第 6 個 tr 標籤的第 2 個 td 標籤的值
             const table2 = tables[5];
             if (table2) {
                 const tr6 = table2.querySelectorAll('tr')[5];
@@ -40,10 +40,10 @@
             break;
 
         case 5:
-            // 查找第 5 個 table 標籤的第 6 個 tr 標籤的第 2 個 td 標籤的值
-            const newTable2 = tables[4];
+            // 尋找第 5 個 table 標籤的第 6 個 tr 標籤的第 2 個 td 標籤的值
+            const newTable2 = tables[4]; // 假設新的邏輯需要選擇第 5 個表格
             if (newTable2) {
-                const tr5 = newTable2.querySelectorAll('tr')[5];
+                const tr5 = newTable2.querySelectorAll('tr')[5]; // 假設從第 5 個行開始
                 if (tr5) {
                     const td2 = tr5.querySelectorAll('td')[1];
                     Value2 = td2 ? td2.textContent.trim() : '';
@@ -62,7 +62,7 @@
             return; // 結束執行
     }
 
-    // 查找第 2 個 table 標籤的第 2 個 tr 標籤的第 1 個 td 標籤的值
+    // 尋找第 2 個 table 標籤的第 2 個 tr 標籤的第 1 個 td 標籤的值
     const table1 = tables[1];
     if (table1) {
         const tr2 = table1.querySelectorAll('tr')[1];
@@ -72,7 +72,7 @@
         }
     }
 
-    // 查找 class 名為 stlDdf 的元素並格式化其值
+    // 尋找 class 名為 stlDdf 的元素並格式化其值
     const stlDdfElement = document.querySelector('.stlDdf');
     if (stlDdfElement) {
         const rawText = stlDdfElement.textContent.trim();
@@ -80,7 +80,7 @@
         Value3 = match ? match[1] : '';
     }
 
-    // 新增：查找「3.路由資料」表格中「上層電路」包含 TCKK 的值，並複製「銜接設備」的值
+    // 尋找「3.路由資料」表格中「上層電路」包含 TCKK 的值，並複製「銜接設備」的值
     if (tables[3]) { //如果有第四個表格，就執行下面指令
         const rows = tables[3].querySelectorAll('tr');　//選擇第四個表格中的所有 tr 標籤，並將其存儲在變數 rows 中。
 
@@ -88,7 +88,7 @@
             const cells = rows[i].querySelectorAll('td'); //選擇所有 td 標籤，並將其存儲在變數 cells 中。
             if (cells.length > 1 && cells[1].textContent.includes('TCKK')) { //該行是否至少有兩個單元格（cells.length > 1），確保有「上層電路」和「銜接設備」兩個欄位，而第二個單元格「上層電路」（cells[1]）的文本內容中是否包含字符串 TCKK。
                 let tempValue4 = cells[2].textContent.trim(); // 複製第三個單元格「銜接設備」的值
-                const Match2 = tempValue4.match(/\^(.+)/); // 正則表達式匹配 ^ 後的內容
+                const Match2 = tempValue4.match(/\^.*F-(\w+-\w+-\w+:\w+|\w+-\w+-\w+)/); // 正則表達式匹配 「^*F-」 後的內容
                 Value4 = Match2 ? Match2[1] : ''; // 提取 ^ 後的值
                 break; // 找到後即停止
             }
@@ -104,7 +104,7 @@
     // 格式化並自動複製到剪貼簿
     const formattedValue = `${Value1}.${Value2}.${Value3}.${Value4}`;
     navigator.clipboard.writeText(formattedValue).then(() => {
-        alert(`已自動複製: \n${formattedValue}`); //debug用
+        //alert(`已自動複製: \n${formattedValue}`); //debug用
     }).catch(err => {
         console.error('複製時發生錯誤: ', err);
     });
