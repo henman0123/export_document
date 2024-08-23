@@ -19,18 +19,32 @@ function exportPDF() {
 
             const baseX = 15.55;
 
-            // 檢查 line[2] 或 line[3] 是否超過 20 個字元
-            if (line[2].length > 20 || line[3].length > 20) {
+            // 檢查 line[2] 是否超過 15 個字元
+            if (line[2].length > 15) {
                 label.text(`${line[0]}`, baseX, y);  // 電路名稱 (左端)
                 label.text(`${line[1]}`, baseX, y + 5);  // 專線代碼 (左端)
                 label.setFontSize(10); // 縮小字體大小以適應長文本
                 label.text(`${line[2]}`, baseX + 46, y); // 電路位置1 (左端)
-                label.text(`${line[3]}`, baseX + 46, y + 5); // 電路位置2 (左端)
                 label.setFontSize(12); // 還原字體大小
+                label.text(`${line[3]}`, baseX + 46, y + 5); // 電路位置2 (左端)
                 label.text(`${line[0]}`, baseX + 93, y);  // 電路名稱 (右端)
                 label.text(`${line[1]}`, baseX + 93, y + 5);  // 專線代碼 (右端)
                 label.setFontSize(10); // 縮小字體大小以適應長文本
                 label.text(`${line[2]}`, baseX + 93 + 46, y); // 電路位置1 (右端)
+                label.setFontSize(12); // 還原字體大小
+                label.text(`${line[3]}`, baseX + 93 + 46, y + 5); // 電路位置2 (右端)
+                y += 11.95; // 調整段落間距
+            } else if (line[3].length > 15) {  //檢查 line[3] 是否超過 15 個字元
+                label.text(`${line[0]}`, baseX, y);  // 電路名稱 (左端)
+                label.text(`${line[1]}`, baseX, y + 5);  // 專線代碼 (左端)
+                label.text(`${line[2]}`, baseX + 46, y); // 電路位置1 (左端)
+                label.setFontSize(10); // 縮小字體大小以適應長文本
+                label.text(`${line[3]}`, baseX + 46, y + 5); // 電路位置2 (左端)
+                label.setFontSize(12); // 還原字體大小
+                label.text(`${line[0]}`, baseX + 93, y);  // 電路名稱 (右端)
+                label.text(`${line[1]}`, baseX + 93, y + 5);  // 專線代碼 (右端)
+                label.text(`${line[2]}`, baseX + 93 + 46, y); // 電路位置1 (右端)
+                label.setFontSize(10); // 縮小字體大小以適應長文本
                 label.text(`${line[3]}`, baseX + 93 + 46, y + 5); // 電路位置2 (右端)
                 y += 11.95; // 調整段落間距
             } else {
