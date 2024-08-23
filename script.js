@@ -18,8 +18,8 @@ function exportPDF() {
 
             const baseX = 15.55;
 
-            // 檢查 line[0]、line[2] 、line[3] 是否超過 15 個字元
-            if (line[0].length > 15 || line[2].length > 15 || line[3].length > 15) {
+            // 檢查 line[0]、line[2] 、line[3] 是否超過 14 個字元
+            if (line[0].length > 14 || line[2].length > 14 || line[3].length > 14) {
                 label.setFontSize(10); // 縮小字體大小以適應長文本
                 label.text(`${line[0]}`, baseX, y);  // 電路名稱 (左端)
                 label.text(`${line[1]}`, baseX, y + 5);  // 專線代碼 (左端)
