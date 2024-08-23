@@ -5,7 +5,6 @@ function exportPDF() {
     const { jsPDF } = window.jspdf; // 從 jsPDF 庫中獲取 jsPDF 類
     const label = new jsPDF(); // 新建一個 jsPDF 實例
     label.setFont("times"); // 設定字型為 Times New Roman
-    label.setFontSize(12);
 
     let y = 10; // 初始化 y 座標（東昇協助實測數值）
     let lineCount = 0; // 初始化行計數器
@@ -33,6 +32,7 @@ function exportPDF() {
                 y += 11.95; // 調整段落間距
             } else {
                 // 使用原始格式
+                label.setFontSize(12);
                 label.text(`${line[0]}`, baseX, y);  // 電路名稱 (左端)
                 label.text(`${line[1]}`, baseX, y + 5);  // 專線代碼 (左端)
                 label.text(`${line[2]}`, baseX + 61, y); // 電路位置1 (左端)
