@@ -29,13 +29,40 @@ label {
 
 textarea {
   width: calc(100% - 20px);
-  padding: 8px;
+  /*padding: 8px;*/
   font-size: 16px;
   margin: 25px 0px 25px 0px;
   border: 1px solid #ccc;
   border-radius: 4px;
   resize: none;
 }
+
+#startLine {
+  width: 25px;
+  font-size: 16px;
+  border: 1px solid #fff;
+  border-radius: 0px;
+  outline: none;
+  transition: all 0.3s ease-in-out;
+  text-align: center;
+  -moz-appearance: textfield; /* 移除 Firefox 的上下箭頭 */
+}
+
+#startLine::-webkit-inner-spin-button, 
+#startLine::-webkit-outer-spin-button { 
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+#startLine:focus {
+  border-color: #fff;
+}
+
+#startLine:hover {
+  border: 1px solid #fff;
+
+}
+
 
 button {
   background-color: #393937;
@@ -118,7 +145,7 @@ ul li {
   list-style: none;
 }
 
-ul li a {
+ul li a,ul li label {
   display: block;
   color: #fff;
   padding: 10px;

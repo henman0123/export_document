@@ -1,4 +1,9 @@
-function exportPDF() {
+function exportPDFFromLine() {
+    const startLine = parseInt(document.getElementById('startLine').value, 10);
+    exportPDF(startLine);
+}
+
+function exportPDF(startLine = 1) {
     const text = document.getElementById('text').value; // 獲取文本區域的輸入內容
     const lines = text.split('\n').map(line => line.split('.')); // 將輸入內容按行分割，並將每行按點號分割成多個子元素
 
@@ -6,8 +11,9 @@ function exportPDF() {
     const label = new jsPDF(); // 新建一個 jsPDF 實例
     label.setFont("times"); // 設定字型為 Times New Roman
 
-    let y = 10; // 初始化 y 座標（東昇協助實測數值）
-    let lineCount = 0; // 初始化行計數器
+    let y = 10 + (startLine - 1) * 11.95; // 初始化 y 座標，根據起始行調整
+    let lineCount = startLine - 1; // 初始化行計數器，考慮起始行
+
     lines.forEach(line => {
         if (line.length === 4) {
             if (lineCount === 24) { //如果行計數器等於 24 則執行下方程式碼。
@@ -49,3 +55,4 @@ function exportPDF() {
     });
     label.save('label.pdf');
 }
+
