@@ -41,6 +41,7 @@ textarea {
   width: 25px;
   font-size: 16px;
   border: 1px solid #fff;
+  border-bottom: 1px solid #000;
   border-radius: 0px;
   outline: underline;
   transition: all 0.3s ease-in-out;
