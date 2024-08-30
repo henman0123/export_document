@@ -22,7 +22,7 @@ function exportPDF(startLine = 1) {
                 lineCount = 0; // 重設行計數器
             }
 
-            const baseX = 15.55;
+            const baseX = 18.55;
 
             // 檢查 line[0]、line[2] 、line[3] 是否超過 18 個字元
             if (line[0].length > 18 || line[2].length > 18 || line[3].length > 18) {
@@ -53,6 +53,6 @@ function exportPDF(startLine = 1) {
             lineCount++; // 增加行計數器
         }
     });
-    label.save('label.pdf');
+    label.save('LD-869_label.pdf');
 }
 
