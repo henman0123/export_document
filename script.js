@@ -11,9 +11,7 @@ function exportPDF(startLine = 1) {
 
     const { jsPDF } = window.jspdf; // 從 jsPDF 庫中獲取 jsPDF 類
     const label = new jsPDF(); // 新建一個 jsPDF 實例
-    //label.setFont("times"); // 設定字型為 Times New Roman
-    label.addFont("SourceHanSans-Normal.ttf", "SourceHanSans-Normal", "normal");
-    label.setFont("SourceHanSans-Normal");
+    label.setFont("times"); // 設定字型為 Times New Roman
     
     let y = 10 + (startLine - 1) * 11.95; // 初始化 y 座標，根據起始行調整
     let lineCount = startLine - 1; // 初始化行計數器，考慮起始行
