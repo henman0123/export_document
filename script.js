@@ -5,6 +5,8 @@ function exportPDFFromLine() {
 
 function exportPDF(startLine = 1) {
     const text = document.getElementById('text').value; // 獲取文本區域的輸入內容
+        console.log(value); // 這應該包含所有輸入，包括中文
+
     const lines = text.split('\n').map(line => line.split('.')); // 將輸入內容按行分割，並將每行按點號分割成多個子元素
 
     const { jsPDF } = window.jspdf; // 從 jsPDF 庫中獲取 jsPDF 類
