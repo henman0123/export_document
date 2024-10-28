@@ -5,14 +5,15 @@ function exportPDFFromLine() {
 
 function exportPDF(startLine = 1) {
     const text = document.getElementById('text').value; // 獲取文本區域的輸入內容
-        console.log(text); // 這應該包含所有輸入，包括中文
 
     const lines = text.split('\n').map(line => line.split('.')); // 將輸入內容按行分割，並將每行按點號分割成多個子元素
 
     const { jsPDF } = window.jspdf; // 從 jsPDF 庫中獲取 jsPDF 類
     const label = new jsPDF(); // 新建一個 jsPDF 實例
-    label.setFont("times"); // 設定字型為 Times New Roman
-    
+    //label.setFont("times"); // 設定字型為 Times New Roman
+    label.addFont('SourceHanSans-Normal.ttf', 'SourceHanSans-Normal', 'normal');     // 設定字型為思源黑體，用以支援顯示中文
+    label.setFont('SourceHanSans-Normal');
+
     let y = 10 + (startLine - 1) * 11.95; // 初始化 y 座標，根據起始行調整
     let lineCount = startLine - 1; // 初始化行計數器，考慮起始行
 
