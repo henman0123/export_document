@@ -1,14 +1,23 @@
 // jsPDF 相關設定常數
 const PDF_CONFIGS = {
     INITIAL_Y: 10, //  Y 座標預設值 (初始化也會用到)
-    LINE_HEIGHT: 11.95, // 段落間距
+    LINE_HEIGHT: 11.95, // 段落間距 （東昇協助實測數值）
     BASE_X: 17.55, //  X 座標預設值
+    alignRightOpt_BASE_X: 50, // 給啟用文字靠右對齊的選項物件的 X 座標預設值
     RIGHT_SECTION_OFFSET: 93, // 供右端使用偏移值
     LINE1_X_LINE2_X_SECTION_OFFSET: 50, // 供 line[2]、line[3] X 座標使用偏移值
     LINE3_Y_OFFSET: 5, // 供 line[4] Y 座標使用偏移值
     LINES_PER_PAGE: 24, // 一頁最多幾行
     MAX_TEXT_LENGTH: 16 // 最多接受字元數
 };
+
+// 文字靠右對齊的選項物件
+const alignRightOpt = {
+    align: 'right'
+};
+
+// 在繪製文字時加入選項
+label.text('你的文字', x座標, y座標, alignRightOptions);
 
 function exportPDFFromLine() {
     const startLine = parseInt(document.getElementById('startLine').value, 10);
@@ -43,25 +52,25 @@ function exportPDF(startLine = 1) {
                 label.setFontSize(9); // 縮小字體大小以適應長文本
                 label.text(`${line[0]}`, PDF_CONFIGS.BASE_X, y);  // 電路名稱 (左端)
                 label.text(`${line[1]}`, PDF_CONFIGS.BASE_X, y + PDF_CONFIGS.LINE3_Y_OFFSET);  // 專線代碼 (左端)
-                label.text(`${line[2]}`, PDF_CONFIGS.BASE_X + PDF_CONFIGS.LINE1_X_LINE2_X_SECTION_OFFSET, y); // 電路位置1 (左端)
-                label.text(`${line[3]}`, PDF_CONFIGS.BASE_X + PDF_CONFIGS.LINE1_X_LINE2_X_SECTION_OFFSET, y + PDF_CONFIGS.LINE3_Y_OFFSET); // 電路位置2 (左端)
+                label.text(`${line[2]}`, PDF_CONFIGS.alignRightOpt_BASE_X + PDF_CONFIGS.LINE1_X_LINE2_X_SECTION_OFFSET, y, alignRightOpt); // 電路位置1 (左端)
+                label.text(`${line[3]}`, PDF_CONFIGS.alignRightOpt_BASE_X + PDF_CONFIGS.LINE1_X_LINE2_X_SECTION_OFFSET, y + PDF_CONFIGS.LINE3_Y_OFFSET, alignRightOpt); // 電路位置2 (左端)
                 label.text(`${line[0]}`, PDF_CONFIGS.BASE_X + PDF_CONFIGS.RIGHT_SECTION_OFFSET, y);  // 電路名稱 (右端)
                 label.text(`${line[1]}`, PDF_CONFIGS.BASE_X + PDF_CONFIGS.RIGHT_SECTION_OFFSET, y + PDF_CONFIGS.LINE3_Y_OFFSET);  // 專線代碼 (右端)
-                label.text(`${line[2]}`, PDF_CONFIGS.BASE_X + PDF_CONFIGS.RIGHT_SECTION_OFFSET + PDF_CONFIGS.LINE1_X_LINE2_X_SECTION_OFFSET, y); // 電路位置1 (右端)
-                label.text(`${line[3]}`, PDF_CONFIGS.BASE_X + PDF_CONFIGS.RIGHT_SECTION_OFFSET + PDF_CONFIGS.LINE1_X_LINE2_X_SECTION_OFFSET, y + PDF_CONFIGS.LINE3_Y_OFFSET); // 電路位置2 (右端)
+                label.text(`${line[2]}`, PDF_CONFIGS.alignRightOpt_BASE_X + PDF_CONFIGS.RIGHT_SECTION_OFFSET + PDF_CONFIGS.LINE1_X_LINE2_X_SECTION_OFFSET, y, alignRightOpt); // 電路位置1 (右端)
+                label.text(`${line[3]}`, PDF_CONFIGS.alignRightOpt_BASE_X + PDF_CONFIGS.RIGHT_SECTION_OFFSET + PDF_CONFIGS.LINE1_X_LINE2_X_SECTION_OFFSET, y + PDF_CONFIGS.LINE3_Y_OFFSET, alignRightOpt); // 電路位置2 (右端)
                 y += PDF_CONFIGS.LINE_HEIGHT; // 調整段落間距
             } else {
                 // 使用原始格式
                 label.setFontSize(10);
                 label.text(`${line[0]}`, PDF_CONFIGS.BASE_X, y);  // 電路名稱 (左端)
                 label.text(`${line[1]}`, PDF_CONFIGS.BASE_X, y + PDF_CONFIGS.LINE3_Y_OFFSET);  // 專線代碼 (左端)
-                label.text(`${line[2]}`, PDF_CONFIGS.BASE_X + PDF_CONFIGS.LINE1_X_LINE2_X_SECTION_OFFSET, y); // 電路位置1 (左端)
-                label.text(`${line[3]}`, PDF_CONFIGS.BASE_X + PDF_CONFIGS.LINE1_X_LINE2_X_SECTION_OFFSET, y + PDF_CONFIGS.LINE3_Y_OFFSET); // 電路位置2 (左端)
+                label.text(`${line[2]}`, PDF_CONFIGS.alignRightOpt_BASE_X + PDF_CONFIGS.LINE1_X_LINE2_X_SECTION_OFFSET, y, alignRightOpt); // 電路位置1 (左端)
+                label.text(`${line[3]}`, PDF_CONFIGS.alignRightOpt_BASE_X + PDF_CONFIGS.LINE1_X_LINE2_X_SECTION_OFFSET, y + PDF_CONFIGS.LINE3_Y_OFFSET, alignRightOpt); // 電路位置2 (左端)
                 label.text(`${line[0]}`, PDF_CONFIGS.BASE_X + PDF_CONFIGS.RIGHT_SECTION_OFFSET, y);  // 電路名稱 (右端)
                 label.text(`${line[1]}`, PDF_CONFIGS.BASE_X + PDF_CONFIGS.RIGHT_SECTION_OFFSET, y + PDF_CONFIGS.LINE3_Y_OFFSET);  // 專線代碼 (右端)
-                label.text(`${line[2]}`, PDF_CONFIGS.BASE_X + PDF_CONFIGS.RIGHT_SECTION_OFFSET + PDF_CONFIGS.LINE1_X_LINE2_X_SECTION_OFFSET, y); // 電路位置1 (右端)
-                label.text(`${line[3]}`, PDF_CONFIGS.BASE_X + PDF_CONFIGS.RIGHT_SECTION_OFFSET + PDF_CONFIGS.LINE1_X_LINE2_X_SECTION_OFFSET, y + PDF_CONFIGS.LINE3_Y_OFFSET); // 電路位置2 (右端)
-                y += PDF_CONFIGS.LINE_HEIGHT; // 段落間距（東昇協助實測數值）
+                label.text(`${line[2]}`, PDF_CONFIGS.alignRightOpt_BASE_X + PDF_CONFIGS.RIGHT_SECTION_OFFSET + PDF_CONFIGS.LINE1_X_LINE2_X_SECTION_OFFSET, y, alignRightOpt); // 電路位置1 (右端)
+                label.text(`${line[3]}`, PDF_CONFIGS.alignRightOpt_BASE_X + PDF_CONFIGS.RIGHT_SECTION_OFFSET + PDF_CONFIGS.LINE1_X_LINE2_X_SECTION_OFFSET, y + PDF_CONFIGS.LINE3_Y_OFFSET, alignRightOpt); // 電路位置2 (右端)
+                y += PDF_CONFIGS.LINE_HEIGHT; // 段落間距
             }
  
             lineCount++; // 增加行計數器
